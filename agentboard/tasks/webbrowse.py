@@ -293,9 +293,9 @@ URL: {url}"""
         self.env.close()
         difficulties = self.difficulties
         success_rate = scores
-        sr = sum(success_rate) * 1.0 / len(success_rate)
-        pr = sum(progress_scores) * 1.0 / len(progress_scores)
-        gr = sum(grounding_acc_avg) * 1.0 / len(grounding_acc_avg)
+        sr = sum(success_rate) * 1.0 / len(success_rate) if len(success_rate) > 0 else 0
+        pr = sum(progress_scores) * 1.0 / len(progress_scores) if len(progress_scores) > 0 else 0
+        gr = sum(grounding_acc_avg) * 1.0 / len(grounding_acc_avg) if len(grounding_acc_avg) > 0 else 0
 
         hard_sr = [sr for sr, difficulty in zip(success_rate, difficulties) if difficulty == "hard"]
         hard_sr = sum(hard_sr) / len(hard_sr) if len(hard_sr) > 0 else 0

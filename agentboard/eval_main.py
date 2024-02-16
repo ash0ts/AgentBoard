@@ -172,9 +172,9 @@ def main():
         success_rates, progress_rates, grounding_accs, score_state_records,\
             easy_sr, hard_sr, easy_pr, hard_pr = task.evaluate()
         
-        success_rate = sum(success_rates) * 1.0 / len(success_rates)
-        progress_rate = sum(progress_rates) * 1.0 / len(progress_rates)
-        grounding_acc = sum(grounding_accs) * 1.0 / len(grounding_accs)
+        success_rate = sum(success_rates) * 1.0 / len(success_rates) if len(success_rates) > 0 else 0
+        progress_rate = sum(progress_rates) * 1.0 / len(progress_rates) if len(progress_rates) > 0 else 0
+        grounding_acc = sum(grounding_accs) * 1.0 / len(grounding_accs) if len(grounding_accs) > 0 else 0
 
         
         logger.finish(f"Task {task_name} | Success Rate: {success_rate} , Progress Rate: {progress_rate} , Easy SR: {easy_sr}."

@@ -176,9 +176,9 @@ class EvalWebshop(BaseTask):
 
         difficulties = self.difficulties
         success_rate = [1 if x == 1 else 0 for x in score_list]
-        sr = sum(success_rate) * 1.0 / len(success_rate)
-        pr = sum(all_progress_rates) * 1.0 / len(all_progress_rates)
-        gr = sum(grounding_acc_list) * 1.0 / len(grounding_acc_list)
+        sr = sum(success_rate) * 1.0 / len(success_rate) if len(success_rate) > 0 else 0
+        pr = sum(all_progress_rates) * 1.0 / len(all_progress_rates) if len(all_progress_rates) > 0 else 0
+        gr = sum(grounding_acc_list) * 1.0 / len(grounding_acc_list) if len(grounding_acc_list) > 0 else 0
 
         hard_sr = [sr for sr, difficulty in zip(success_rate, difficulties) if difficulty == "hard"]
         hard_sr = sum(hard_sr) / len(hard_sr) if len(hard_sr) > 0 else 0

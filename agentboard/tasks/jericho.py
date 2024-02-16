@@ -192,9 +192,9 @@ class EvalJericho(BaseTask):
                 success_rate.append(0)
             logger.finish("Example {} | Success: {} , Progress Rate: {} , Steps: {}\n".format(id, success, progress_rate, steps))
 
-        sr = sum(success_rate) * 1.0 / len(success_rate)
-        pr = sum(all_progress_rates) * 1.0 / len(all_progress_rates)
-        gr = sum(grounding_accs) * 1.0 / len(grounding_accs)
+        sr = sum(success_rate) * 1.0 / len(success_rate) if len(success_rate) > 0 else 0
+        pr = sum(all_progress_rates) * 1.0 / len(all_progress_rates) if len(all_progress_rates) > 0 else 0
+        gr = sum(grounding_accs) * 1.0 / len(grounding_accs) if len(grounding_accs) > 0 else 0
 
         hard_sr = [sr for sr, difficulty in zip(success_rate, difficulties) if difficulty == "hard"]
         hard_sr = sum(hard_sr) / len(hard_sr) if len(hard_sr) > 0 else 0

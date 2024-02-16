@@ -49,4 +49,27 @@ prompt_templates = {
             </s>
             [INST]{prompt}[/INST]
             """,
+    "fireact":
+            """
+                <<SYS>>
+                {system_prompt}
+                <</SYS>>
+                [INST]{prompt}[/INST]
+            """,
+    "agentlm":
+            """
+                <<SYS>>
+                {system_prompt}
+                <</SYS>>
+                [INST]{prompt}[/INST]
+            """,
+    "yunconglong":
+            """
+                {system_prompt}
+
+                USER: {prompt}<｜end▁of▁sentence｜>
+                
+                ASSISTANT: 
+            """,
 }
+

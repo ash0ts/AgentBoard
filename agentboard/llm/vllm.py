@@ -6,7 +6,6 @@ from common.registry import registry
 from prompts.prompt_template import prompt_templates
 
 
-
 @registry.register_llm("vllm")
 class VLLM:
     def __init__(self,
@@ -36,7 +35,8 @@ class VLLM:
             self.llm = LLM(model=self.model, dtype=d_type, tensor_parallel_size=ngpu, gpu_memory_utilization=0.9, max_num_batched_tokens=8192, max_model_len=8192)
         else:
             self.llm = LLM(model=self.model, dtype=d_type, tensor_parallel_size=ngpu, gpu_memory_utilization=0.9, max_num_batched_tokens=self.context_length)
-        self.tokenizer = self.llm.get_tokenizer()
+        # self.tokenizer = self.llm.get_tokenizer()
+        self.tokenizer = self.llm.get_tokenizer().tokenizer #fix for latest vllm for moe/mixtral
         
     def make_prompt(self, system_message, prompt):
         full_prompt = None
@@ -67,7 +67,18 @@ class VLLM:
         elif 'mistral' in self.model.lower():
             full_prompt = prompt_templates["mistral"].format(system_prompt=system_message, prompt=prompt)
             full_prompt = full_prompt.strip()
+        
+        elif 'fireact' in self.model.lower():
+            full_prompt = prompt_templates["fireact"].format(system_prompt=system_message, prompt=prompt)
+            full_prompt = full_prompt.strip()
+
+        elif 'agentlm' in self.model.lower():
+            full_prompt = prompt_templates["agentlm"].format(system_prompt=system_message, prompt=prompt)
+            full_prompt = full_prompt.strip()
             
+        elif 'yunconglong' in self.model.lower():
+            full_prompt = prompt_templates["yunconglong"].format(system_prompt=system_message, prompt=prompt)
+            full_prompt = full_prompt.strip()
         else:
             raise NotImplementedError
         

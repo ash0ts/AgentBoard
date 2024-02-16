@@ -162,9 +162,9 @@ class EvalScienceworld(BaseTask):
 
         #print(f"avg score: {sum(scores) * 1.0 / len(scores)}, SR: {sum(srs) * 1.0 / len(srs)}")
 
-        sr = sum(srs) * 1.0 / len(srs)
-        pr = sum(scores) * 1.0 / len(scores)
-        gr = sum(grounding_accs) * 1.0 / len(grounding_accs)
+        sr = sum(srs) * 1.0 / len(srs) if len(srs) > 0 else 0
+        pr = sum(scores) * 1.0 / len(scores) if len(scores) > 0 else 0
+        gr = sum(grounding_accs) * 1.0 / len(grounding_accs) if len(grounding_accs) > 0 else 0
 
         hard_sr = [sr for sr, difficulty in zip(srs, difficulties) if difficulty == "hard"]
         hard_sr = sum(hard_sr) / len(hard_sr) if len(hard_sr) > 0 else 0

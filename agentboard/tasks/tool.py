@@ -88,9 +88,9 @@ class EvalTool(BaseTask):
             
             logger.finish("Example {} | Success: {} , Progress Rate: {} , Steps: {}\n".format(id, success, progress_rate, steps))
 
-        sr = sum(success_rates) * 1.0 / len(success_rates)
-        pr = sum(progress_rates) * 1.0 / len(progress_rates)
-        gr = sum(grounding_scores) * 1.0 / len(grounding_scores)
+        sr = sum(success_rates) * 1.0 / len(success_rates) if len(success_rates) > 0 else 0
+        pr = sum(progress_rates) * 1.0 / len(progress_rates) if len(progress_rates) > 0 else 0
+        gr = sum(grounding_scores) * 1.0 / len(grounding_scores) if len(grounding_scores) > 0 else 0
 
         hard_sr = [sr for sr, difficulty in zip(success_rates, difficulties) if difficulty == "hard"]
         hard_sr = sum(hard_sr) / len(hard_sr) if len(hard_sr) > 0 else 0

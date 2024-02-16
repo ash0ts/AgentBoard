@@ -97,6 +97,7 @@ class OPENAI_GPT:
             "gpt-4-32k-0314",
             "gpt-4-0613",
             "gpt-4-32k-0613",
+            "ft:gpt-3.5-turbo-0613:weights-biases::8shLxWK0"
             }:
             tokens_per_message = 3
             tokens_per_name = 1

@@ -46,6 +46,17 @@ llm:
       max_retry_iters: 15
       stop: "\n"
       use_parser: False
+  ft:gpt-3.5-turbo-0613:weights-biases::8shLxWK0:
+      name: gpt
+      engine: ft:gpt-3.5-turbo-0613:weights-biases::8shLxWK0
+      context_length: 4096
+      use_azure: False
+      temperature: 0.
+      top_p: 1
+      retry_delays: 20
+      max_retry_iters: 15
+      stop: "\n"
+      use_parser: False
   text-davinci-003:
       name: gpt_azure
       engine: text-davinci-003
@@ -176,6 +187,42 @@ llm:
       dtype: float16
       ngpu: 2
       use_parser: True
+
+  forestai-fireact-llama-2-7b:
+      name: vllm
+      engine: forestai/fireact_llama_2_7b
+      max_tokens: 100
+      temperature: 0.
+      top_p: 1
+      stop:
+      context_length: 4096
+      dtype: float16
+      ngpu: 1
+      use_parser: True
+
+  thudm-agentlm-13b:
+      name: vllm
+      engine: THUDM/agentlm-13b
+      max_tokens: 100
+      temperature: 0.
+      top_p: 1
+      stop:
+      context_length: 4096
+      dtype: float16
+      ngpu: 1
+      use_parser: True
+  yunconglong-moe-13b-dpo:
+      name: vllm
+      engine: yunconglong/MoE_13B_DPO
+      max_tokens: 100
+      temperature: 0.
+      top_p: 1
+      stop:
+      context_length: 32768
+      dtype: float16
+      ngpu: 1
+      use_parser: True
+
 
 env:
   pddl:

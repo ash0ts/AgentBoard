@@ -139,7 +139,11 @@ class VanillaAgent(
             action_temp = action.split('\n')
             for act in action_temp:
                 if "next action" in act and ':' in act: # zzh: in Claude will return "Here is the next action to take:"
-                    idx = action_temp.index(act)
+                    try:
+                        idx = action_temp.index(act)
+                        # Proceed with your logic after finding the index
+                    except ValueError:
+                        break #BUG: IDK
                     while idx + 1 < len(action_temp):
                         if action_temp[idx + 1]:
                             action = action_temp[idx + 1]

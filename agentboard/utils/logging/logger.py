@@ -587,7 +587,10 @@ class TaskLogger:
                 reward_score_list[step] += score
         
         for i in range(self.max_num_steps):
-            reward_score_list[i] /= len(score_steps)
+            if len(score_steps) > 0:
+                reward_score_list[i] /= len(score_steps)
+            else:
+                reward_score_list[i] = 0  # Assign a default value to handle the case when len(score_steps) is 0
         
         reward_score_list = [ i*100 for i in reward_score_list[:self.max_num_steps] ]
         reward_score_list.insert(0, 0)
